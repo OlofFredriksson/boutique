@@ -55,6 +55,18 @@ This step is optional, but if you want products in your shop, run this:
     $ python manage.py loaddata ../fixtures/catalogue.json
 
 
+## Running tests
+
+To run the unit tests
+
+    $ python manage.py test --settings=boutique.settings.test
+
+To run check code coverage
+
+    coverage run --source='.' manage.py test --settings=boutique.settings.test
+    coverage report
+
+
 ## Running
 
 Run the local development server by issuing:
