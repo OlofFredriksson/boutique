@@ -1,0 +1,36 @@
+{% extends "../../brand/templates/pages/base.html" %}
+{% load i18n %}
+{% load humanize %}
+{% load product %}
+
+{% block title %}
+    {{ product.title }} - {% trans 'Boutique' %}
+{% endblock %}
+
+{% block main %}
+    <div class="row bt-product-detail">
+        <div class="five columns">
+            <div class="bt-product">
+                <img src="{{ product.image.url }}" alt="{{ product.title }}" />
+            </div>
+        </div>
+        <div class="seven columns">
+            <h3 class="bt-h3">{{ product.title }}</h3>
+            <p class="bt-p">{{ product.description }}</p>
+            <div class="bt-product-attribute">
+                <strong class="bt-strong">{% trans 'ABV:' %}</strong>
+                {{ product.abv|percentage}}
+            </div>
+            <div class="bt-product-attribute">
+                <strong class="bt-strong">{% trans 'Price:' %}</strong>
+                {{ product.price|intcomma }} {% trans 'SEK' %}
+            </div>
+        </div>
+        <div class="four columns">
+            <form action="{% url 'cart_add' product.id %} " method="POST">
+                {% csrf_token %}
+                <button type="submit" class="bt-button">{% trans 'Buy now' %}</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

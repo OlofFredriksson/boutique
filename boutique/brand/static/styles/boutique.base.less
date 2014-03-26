@@ -1,0 +1,140 @@
+/**
+ * Base styles includes styling of standard HTML elements (which should be
+ * avoided) as well as styling the standard components and screen furniture
+ * found on most pages.
+ *
+ *
+ * Try to make sizes of type ^2
+ */
+
+html {
+    background-color: @color-main-bg;
+}
+
+body {
+    color: @color-main-color;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: @font-main-size;
+    font-weight: @font-main-weight;
+    line-height: @font-main-height;
+}
+
+.bt-a:link,
+.bt-a:visited {
+    color: @color-main-link-color;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.bt-a:focus,
+.bt-a:hover,
+.bt-a:active {
+    color: darken(@color-main-link-color, 10);
+    outline: 0;
+    font-weight: bold;
+}
+
+a.bt-no-link-style,
+a:link.bt-no-link-style,
+a:visited.bt-no-link-style,
+a:focus.bt-no-link-style,
+a:hover.bt-no-link-style,
+a:active.bt-no-link-style {
+    color: @color-main-color;
+    text-decoration: none;
+}
+
+.bt-h1 {
+    font-size: 28px;
+    padding: @std-air*4 0px;
+}
+
+.bt-h2 {
+    font-size: 24px;
+    padding: 10px 0px;
+}
+
+.bt-h3 {
+    font-size: 20px;
+    padding: 8px 0px;
+}
+
+.bt-h4 {
+    font-size: 18px;
+    padding: 5px 0px;
+}
+
+.bt-strong {
+    font-weight: bold;
+}
+
+.bt-p {
+    margin: 8px 0px;
+}
+
+.bt-hidden {
+   display: none;
+}
+
+.bt-page-header {
+    .screen-furniture-mixin();
+    background-color: @color-page-header-bg;
+    border-bottom: 1px solid @color-screen-furniture-border;
+
+    #bt-logo {
+        float: left;
+
+        h1 {
+            color: @__color-green;
+            font-family: "Helvetica Neue";
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 48px;
+            padding: 0px;
+
+            .qa-logo {
+                margin-right: 8px;
+            }
+        }
+    }
+
+    nav {
+        float: right;
+        list-style: none;
+        line-height: 48px;
+        margin: 0px;
+
+        li {
+            float: left;
+            font-weight: bold;
+            margin: 0px 3*@std-air;
+
+            &:hover .bt-folded {
+                display: block;
+            }
+        }
+    }
+
+    .row {
+        margin-bottom: 0px;
+    }
+}
+
+.bt-page-footer {
+    .screen-furniture-mixin();
+    margin-top: 48px;
+
+    .bt-link-list {
+        float: right;
+
+        li {
+            float: left;
+            list-style: none;
+            margin-left: 8px;
+            margin-right: 0px;
+        }
+    }
+}
+
+.bt-pagination {
+}

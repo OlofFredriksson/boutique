@@ -1,0 +1,29 @@
+{% extends "../../brand/templates/pages/base.html" %}
+{% load i18n %}
+{% load humanize %}
+
+{% block title %}
+    {% trans 'Your order' %} - {% trans 'Boutique' %}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="sixteen columns">
+            <h1 class="bt-h1">{% trans 'Your order' %}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <form action="{% url 'order_details' %}" method="POST">
+            {% csrf_token %}
+            <div class="twelve columns">
+                {% blocktrans with products=cart.number_of_items sum=cart.total_price %}
+                    Ordering {{ products }} item{{ products|pluralize }} for {{ sum }} SEK.
+                {% endblocktrans %}
+                {{ form.as_p }}
+            </div>
+            <div class="four columns">
+                <button type="submit" class="bt-button">{% trans 'Submit order' %}</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

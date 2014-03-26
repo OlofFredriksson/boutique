@@ -1,0 +1,18 @@
+.screen-furniture-mixin () {
+    a:focus, a:active, a:link, a:visited {
+        color: @color-screen-furniture-color;
+        text-decoration: none;
+
+        &:hover {
+            color: lighten(@color-screen-furniture-color, 30);
+        }
+    }
+}
+
+.std-air-mixin() {
+    margin: @std-air*4;
+}
+
+.border-mixin (@width: 1px) {
+  border: @width solid @color-box-border-color;
+}

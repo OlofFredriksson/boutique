@@ -1,0 +1,113 @@
+
+.bt-cart-link {
+    background: url("/static/images/cart.png") 0px 8px no-repeat;
+    display: block;
+    min-width: 32px;
+    max-width: 32px;
+    min-height: 32px;
+    max-height: 40px;
+    position: relative;
+    top: 4px;
+
+    &:hover .bt-cart-content {
+        display: block;
+    }
+
+    .bt-cart-icon-count {
+        background-color: @__color-green;
+        border-radius: 10px;
+        color: @__color-white;
+        display: inline;
+        font-weight: bold;
+        height: 20px;
+        line-height: 20px;
+        max-height: 20px;
+        max-width: 20px;
+        min-height: 20px;
+        min-width: 20px;
+        position: absolute;
+        right: -10px;
+        text-align: center;
+        top: 4px;
+        width: 20px;
+    }
+}
+
+ .bt-cart-content {
+    .border-mixin();
+
+    background-color: @color-box-bg;
+    display: none;
+    min-width: 240px;
+    position: absolute;
+    right: 20px;
+    z-index: 5000;
+
+    &:before {
+        content: ' ';
+        position: absolute;
+        width: 0;
+        height: 0;
+        right: 20px;
+        top: -6px;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid @color-box-border-color;
+    }
+
+    .bt-cart-item {
+        color: @color-emphasis-color;
+        clear: both;
+        display: block;
+        float: none;
+        margin: 0px;
+        padding: 4px 20px;
+        position: relative;
+
+        .bt-cart-item-quantity,
+        .bt-cart-item-title{
+            background-color: transparent;
+            display: inline-block;
+            float: left;
+            line-height: 32px;
+            margin-right: 4px;
+        }
+
+        .bt-cart-item-price {
+            float: right;
+            line-height: 32px;
+        }
+    }
+}
+
+.bt-cart-table {
+    font-size: @font-medium-size;
+    width: 100%;
+
+    .bt-th {
+      font-weight: bold;
+    }
+
+    .bt-cart-thead {
+        border-bottom: 1px solid @color-box-border-color;
+    }
+
+    .bt-cart-tbody {
+        .bt-td {
+          padding: 8px 0px;
+        }
+    }
+
+    .bt-cart-tfoot {
+        border-top: 1px solid @color-box-border-color;
+
+        td.bt-cart-total {
+            font-style: oblique;
+        }
+    }
+
+    .bt-cart-item-remove {
+        color: @color-negative-color;
+        display: inline;
+    }
+}

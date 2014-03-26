@@ -1,0 +1,68 @@
+{% extends "../../brand/templates/pages/base.html" %}
+{% load i18n %}
+{% load humanize %}
+
+{% block title %}
+    {% trans 'Your cart' %} - {% trans 'Boutique' %}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="sixteen columns">
+            <h1 class="bt-h1">{% trans 'Your cart' %}</h1>
+        </div>
+    </div>
+    {% if cart_count > 0 %}
+        <div class="row">
+            <div class="twelve columns">
+                <table class="bt-cart-table">
+                    <thead class="bt-cart-thead">
+                        <tr>
+                            <th class="bt-th">{% trans 'Product' %}</th>
+                            <th class="bt-th">{% trans 'Quantity' %}</th>
+                            <th class="bt-th">{% trans 'SEK' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bt-cart-tbody">
+                        {% for item in cart.items.all %}
+                            <tr class="bt-tr">
+                                <td class="bt-td">
+                                    {{ item.product.title }}
+
+                                    <form class="bt-cart-item-remove" action="{% url 'cart_remove' item.product.id %} " method="POST">
+                                        {% csrf_token %}
+                                        <a href="#" onclick="this.parentNode.submit();" class="bt-cart-item-remove">({% trans 'remove' %})</a>
+                                        <button type="submit" class="bt-hidden">{% trans 'remove' %}</button>
+                                    </form>
+                                </td>
+                                <td class="bt-td">{{ item.quantity }}</td>
+                                <td class="bt-td">{{ item.price }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot class="bt-cart-tfoot">
+                        <tr>
+                            <th class="bt-th">{% trans 'Total' %}</th>
+                            <th class="bt-cart-total">{{ cart.number_of_items }}</th>
+                            <td class="bt-cart-total">{{ cart.total_price|intcomma }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="four columns">
+                <a href="{% url 'order_details' %}" class="bt-button">{% trans 'Continue' %}</a>
+                <a href="{% url 'products_list' %}" class="bt-button bt-neutral">{% trans 'Continue shopping' %}</a>
+                <form action="{% url 'cart_clear' %} " method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="bt-button bt-negative">{% trans 'Clear cart' %}</button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="twelve columns">
+                {% trans 'Your cart is empty, start shopping!' %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

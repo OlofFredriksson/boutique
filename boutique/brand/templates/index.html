@@ -1,0 +1,35 @@
+{% extends "pages/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Welcome to the boutique' %}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="sixteen columns">
+            <h1 class="bt-h1">{% trans 'Welcome to the Boutique' %}</h1>
+            <p class="bt-p">
+                {% blocktrans %}
+                    This is a fictive web shop implemented in Django, Pythons
+                    #1 web framework.
+                {% endblocktrans %}
+            </p>
+            <p class="bt-p">
+                {% blocktrans %}
+                    This project is made for educational purposes and
+                    illustrates the following areas in Django and Python.
+                {% endblocktrans %}
+                <ul class="bt-ul">
+                    <li class="bt-li">Environment setup (pip, virtualenv)</li>
+                    <li class="bt-li">Django ORM</li>
+                    <li class="bt-li">Django views and templates</li>
+                    <li class="bt-li">Django shell</li>
+                    <li class="bt-li">Django testing</li>
+                    <li class="bt-li">Django management commands</li>
+                    <li class="bt-li">Django admin</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+{% endblock %}

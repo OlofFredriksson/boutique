@@ -1,0 +1,49 @@
+.bt-button {
+    .border-mixin();
+
+    background-color: @color-button;
+    border-color: @color-button-border;
+    border-radius: @std-border;
+    box-sizing: border-box;
+    clear: both;
+    color: @color-button-color;
+    display: block;
+    font-weight: normal;
+    line-height: 18px;
+    margin-bottom: 8px;
+    outline: 0;
+    padding: 6px 4px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+
+    &:hover {
+        background-color: darken(@color-button, 5);
+        border-color: darken(@color-button-border, 10);
+        cursor: pointer;
+    }
+}
+
+.bt-button.bt-neutral {
+    background-color: @color-neutral-button;
+    border-color: @color-neutral-button-border;
+    color: @color-neutral-button-color;
+
+  &:hover {
+        background-color: darken(@color-neutral-button, 5);
+        border-color: darken(@color-neutral-button-border, 10);
+        cursor: pointer;
+    }
+}
+
+.bt-button.bt-negative {
+    background-color: @color-negative-button;
+    border-color: @color-negative-button-border;
+    color: @color-negative-button-color;
+
+  &:hover {
+        background-color: darken(@color-negative-button, 5);
+        border-color: darken(@color-negative-button-border, 10);
+        cursor: pointer;
+    }
+}

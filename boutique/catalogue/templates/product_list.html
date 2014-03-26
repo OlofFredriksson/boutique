@@ -1,0 +1,49 @@
+{% extends "../../brand/templates/pages/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Our products' %} - {% trans 'Boutique' %}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="sixteen columns">
+            <h1 class="bt-h1">{% trans 'Our products' %}</h1>
+        </div>
+    </div>
+    <div class="row">
+        {% for product in products %}
+            <div class="five columns">
+                <div class="bt-product">
+                    <a class="bt-no-link-style" href="{% url 'products_details' product.slug %}">
+                        <div class="bt-product-image">
+                            <img src="{{ product.image.url }}" alt="{{ product.title }}"/></div>
+                        <div class="bt-product-title">{{ product.title }}</div>
+                        <div class="bt-product-price">{{ product.price }} {% trans 'SEK' %}</div>
+                    </a>
+                    <div class="bt-product-actions">
+                        <a href="{% url 'products_details' product.slug %}" class="bt-a ">{% trans 'Read more...' %}</a>
+                        <form action="{% url 'cart_add' product.id %} " method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="bt-button">{% trans 'Buy now' %}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row bt-pagination">
+        <div class="two columns offset-by-six">
+            {% if page_obj.has_previous %}
+                <a class="bt-button" href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% else %}
+                &nbsp;
+            {% endif %}
+        </div>
+        <div class="two columns">
+            {% if page_obj.has_next %}
+                <a class="bt-button" href="?page={{   page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

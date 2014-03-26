@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load i18n %}
+{% load humanize %}
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock title %}</title>
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet/less" type="text/css"
+              href="{% static 'styles/boutique.less' %}" />
+        <script type="text/javascript">
+            less = {
+                env: "development",
+                async: false,
+                fileAsync: false,
+                poll: 500
+            };
+        </script>
+        <script type="text/javascript"
+                src="{% static 'libraries/less-1.5.0.min.js' %}"></script>
+    </head>
+    <body>
+        <div class="bt-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="four columns">
+                        <div id="bt-logo" class="bt-logo">
+                            <a href="{% url 'home' %}">
+                                <h1>{% trans 'Boutique' context 'title' %}</h1>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="twelve columns">
+                        <nav>
+                            <ul>
+                                <li><a href="{% url 'products_list' %}">{% trans 'Products' %}</a></li>
+                                <li>
+                                    <a href="{% url 'cart' %}" class="bt-cart-link">
+                                        <span class="bt-cart-icon-count">{{ cart_count }}</span>
+                                    </a>
+                                    <ul class="bt-folded bt-cart-content">
+                                        {% if cart_count > 0 %}
+                                            {% for item in cart.items.all %}
+                                                <li class="bt-cart-item">
+                                                    <div class="bt-cart-item-quantity">
+                                                        ({{ item.quantity }})
+                                                    </div>
+                                                    <div class="bt-cart-item-title">
+                                                        <a href="{{ item.get_absolute_url }}">{{ item.product.title }}</a>
+                                                    </div>
+                                                    <div class="bt-cart-item-price">
+                                                        {{ item.price }} {% trans 'SEK' %}
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+                                            <li class="bt-cart-item">
+                                                <div class="bt-cart-item-price">
+                                                    {{ cart.total_price|intcomma }}
+                                                    {% trans 'SEK' %}
+                                                </div>
+                                            </li>
+                                            <li class="bt-cart-item">
+                                                <a href="{% url 'cart' %}" class="bt-button">{% trans 'Checkout' %}</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="bt-cart-item">
+                                                {% trans 'Your cart is empty, start shopping!' %}
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- bt-page-header -->
+
+        <div class="bt-main">
+            <div class="container">
+                {% block main %}
+                {% endblock main %}
+            </div>
+        </div> <!-- bt-main -->
+
+        <div class="bt-page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="six columns">
+                        <strong class="bt-strong">{% trans 'Boutique' %}</strong> {% trans 'The simple web shop' %}
+                    </div>
+                    <div class="ten columns">
+                        <ul class="bt-link-list">
+                            <li><a class="bt-a" href="{% url 'terms' %}">{% trans 'Terms and conditions' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- bt-page-footer -->
+    </body>
+</html>

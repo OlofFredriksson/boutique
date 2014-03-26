@@ -1,0 +1,22 @@
+{% extends "../../brand/templates/pages/base.html" %}
+{% load i18n %}
+{% load humanize %}
+
+{% block title %}
+    {% trans 'Thank You' %} - {% trans 'Boutique' %}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="sixteen columns">
+            <h1 class="bt-h1">{% trans 'Thank you!' %}</h1>
+            <p class="bt-p">
+                {% if code %}
+                    {% blocktrans with code=code %}
+                        Your confirmation code is {{ code }}
+                    {% endblocktrans %}
+                {% endif %}
+            </p>
+        </div>
+    </div>
+{% endblock %}
