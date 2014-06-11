@@ -2,4 +2,4 @@ image: python2.7
 env:
   - DJANGO_SETTINGS_MODULE=boutique.settings.test
 script:
-  - pwd
+  - pip install -r requirements.txt
