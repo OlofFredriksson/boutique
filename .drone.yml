@@ -3,5 +3,4 @@ env:
   - DJANGO_SETTINGS_MODULE=boutique.settings.test
 script:
   - pip install -r requirements.txt
-  - cd quarterapp
-  - python manage.py test
+  - python boutique/manage.py test boutique
