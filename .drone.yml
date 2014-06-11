@@ -1,0 +1,11 @@
+image: bradrydzewski/python:2.7
+env:
+    - DJANGO_SETTINGS_MODULE=boutique.settings.test
+ script:
+    - pip install -r requirements.txt
+    - cd boutique
+    - python manage.py test
+notify:
+    email:
+        recipients:
+            - markus.eliasson@gmail.com
