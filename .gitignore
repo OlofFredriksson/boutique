@@ -38,6 +38,9 @@ nosetests.xml
 # PyCharm
 .idea
 
+# Vagrant
+.vagrant
+
 # boutique
 debug.log
 default.db
